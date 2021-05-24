@@ -189,3 +189,6 @@ You can handle errors by response status.
 
 Errors status codes:
 [You can find here](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
+# Information
+Documentation prepared by: Ramas, 2021-05-24
