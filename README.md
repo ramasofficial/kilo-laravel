@@ -1,6 +1,11 @@
 # Introduction
 I provide a small API for Gilded Rose Kata refactoring project.
 
+This API is without authentication, in the future we will can add:
+* Laravel passport or Sanctum authentication.
+* In this project I don't using Repository pattern, but if need this can will be do in the future.
+* I added POSTMAN collection into /postman folder, which is in root folder.
+
 # Installation
 1. Clone this repository:
 ```
