@@ -27,12 +27,17 @@ copy .env.example .env
 php artisan key:generate
 ```
 
-5. Serve project
+5. Migrate database
+```
+php artisan migrate
+```
+
+6. Serve project
 ```
 php artisan serve
 ```
 
-6. Run tests
+7. Run tests
 ```
 php artisan test
 ```
@@ -47,6 +52,22 @@ Endpoint:
 GET: {APP_URL}/api/categories/list
 ```
 
+Response:
+```
+{
+    "categories": [
+        {
+            "id": 3,
+            "name": "Test 1"
+        },
+        {
+            "id": 4,
+            "name": "Test 2"
+        }
+    ]
+}
+```
+
 ###### Create a new category
 
 Endpoint:
@@ -59,12 +80,48 @@ Body:
 name : string|min:5|unique:categories
 ```
 
+Response:
+```
+{
+    "name": "Test 2",
+    "updated_at": "2021-05-24T11:27:27.000000Z",
+    "created_at": "2021-05-24T11:27:27.000000Z",
+    "id": 4
+}
+```
+
 ## Items:
 ###### List items by category_id
 
 Endpoint:
 ```
 GET: {APP_URL}/api/items/list/{category_id}
+```
+
+Response:
+```
+{
+    "items": [
+        {
+            "id": 2,
+            "category_id": 4,
+            "name": "Test_item",
+            "value": 50,
+            "quality": -10,
+            "created_at": "2021-05-24T11:30:33.000000Z",
+            "updated_at": "2021-05-24T11:30:33.000000Z"
+        },
+        {
+            "id": 3,
+            "category_id": 4,
+            "name": "Test_item",
+            "value": 50,
+            "quality": -10,
+            "created_at": "2021-05-24T11:30:40.000000Z",
+            "updated_at": "2021-05-24T11:30:40.000000Z"
+        }
+    ]
+}
 ```
 
 ###### Add new item
@@ -82,6 +139,19 @@ value : required|numeric|between:10,100.00
 quality : required|integer|min:-10|max:50
 ```
 
+Response:
+```
+{
+    "category_id": "4",
+    "name": "Test_item",
+    "value": "50",
+    "quality": "-10",
+    "updated_at": "2021-05-24T11:30:40.000000Z",
+    "created_at": "2021-05-24T11:30:40.000000Z",
+    "id": 3
+}
+```
+
 ###### Update item
 
 Endpoint:
@@ -97,9 +167,25 @@ value : optional|numeric|between:10,100.00
 quality : optional|integer|min:-10|max:50
 ```
 
+Response:
+```
+boolean
+```
+
 ###### Delete all items by category_id
 
 Endpoint:
 ```
 DELETE: {APP_URL}/api/items/destroy/{category_id}
 ```
+
+Response:
+```
+Number of deleted rows
+```
+
+# Error handling
+You can handle errors by response status.
+
+Errors status codes:
+[You can find here](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
