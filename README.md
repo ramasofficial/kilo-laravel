@@ -169,7 +169,7 @@ quality : optional|integer|min:-10|max:50
 
 Response:
 ```
-boolean
+boolean: true or false
 ```
 
 ###### Delete all items by category_id
@@ -181,7 +181,7 @@ DELETE: {APP_URL}/api/items/destroy/{category_id}
 
 Response:
 ```
-Number of deleted rows
+Number of deleted rows, example: 6
 ```
 
 # Error handling
