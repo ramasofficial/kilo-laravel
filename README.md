@@ -27,4 +27,9 @@ php artisan key:generate
 php artisan serve
 ```
 
+6. Run tests
+```
+php artisan test
+```
+
 # API documentation
