@@ -22,10 +22,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'categories', 'as'=>'categories.'], function () {
     Route::post('/', [CategoryController::class, 'store'])->name('store');
+    Route::get('/list', [CategoryController::class, 'list'])->name('list');
 });
 
 Route::group(['prefix' => 'items', 'as'=>'items.'], function () {
     Route::post('/', [ItemController::class, 'store'])->name('store');
     Route::put('/{id}', [ItemController::class, 'update'])->name('update');
     Route::get('/list/{id}', [ItemController::class, 'list'])->name('list');
+    Route::delete('/destroy/{id}', [ItemController::class, 'destroy'])->name('destroy');
 });

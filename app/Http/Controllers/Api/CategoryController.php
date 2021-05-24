@@ -9,6 +9,18 @@ use App\Http\Requests\StoreCategoryRequest;
 class CategoryController extends Controller
 {
     /**
+     * Return all categories list
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function list()
+    {
+        $categories = Category::select(['id', 'name'])->get();
+
+        return response()->json(['categories' => $categories], 200);
+    }
+
+    /**
      * Store a new category.
      *
      * @param  \Illuminate\Http\StoreCategoryRequest  $request

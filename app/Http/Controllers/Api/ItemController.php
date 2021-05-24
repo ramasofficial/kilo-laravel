@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Item;
-use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ListItemRequest;
 use App\Http\Requests\StoreItemRequest;
 use App\Http\Requests\UpdateItemRequest;
 
@@ -34,6 +33,12 @@ class ItemController extends Controller
     {
         $validated = $request->validated();
 
+        $category = Category::find($validated['category_id']);
+
+        if(!$category) {
+            return response()->json(['errors' => ['category_id' => 'Category doesn\'t exist!']], 404);
+        }
+
         $store = Item::create($validated);
 
         return $store;
@@ -55,5 +60,20 @@ class ItemController extends Controller
         $update = $item->update($validated);
 
         return $update;
+    }
+
+    /**
+     * Destroy all items by category_id
+     *
+     * @param  int $category
+     * @return void
+     */
+    public function destroy(int $category)
+    {
+        $items = Item::where('category_id', $category);
+
+        $delete = $items->delete();
+
+        return $delete;
     }
 }
