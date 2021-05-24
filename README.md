@@ -66,3 +66,40 @@ Endpoint:
 ```
 GET: {APP_URL}/api/items/list/{category_id}
 ```
+
+###### Add new item
+
+Endpoint:
+```
+POST: {APP_URL}/api/items
+```
+
+Body:
+```
+category_id : required|integer
+name : required|ends_with:_item
+value : required|numeric|between:10,100.00
+quality : required|integer|min:-10|max:50
+```
+
+###### Update item
+
+Endpoint:
+```
+PUT: {APP_URL}/api/items/{item_id}
+```
+
+Params:
+```
+category_id : optional|integer
+name : optional|ends_with:_item
+value : optional|numeric|between:10,100.00
+quality : optional|integer|min:-10|max:50
+```
+
+###### Delete all items by category_id
+
+Endpoint:
+```
+DELETE: {APP_URL}/api/items/destroy/{category_id}
+```
