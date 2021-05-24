@@ -38,3 +38,31 @@ php artisan test
 ```
 
 # API documentation
+Categories:
+
+1. List all categories
+
+Endpoint:
+```
+GET: {APP_URL}/api/categories/list
+```
+
+2. Create a new category
+
+Endpoint:
+```
+POST: {APP_URL}/api/categories
+```
+
+Body:
+```
+name : string|min:5|unique:categories
+```
+
+Items:
+1. List items by category_id
+
+Endpoint:
+```
+GET: {APP_URL}/api/items/list/{category_id}
+```
