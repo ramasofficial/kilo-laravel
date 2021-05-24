@@ -78,4 +78,25 @@ class ItemTest extends TestCase
 
         $responseUpdate->assertSee(1);
     }
+
+    /**
+     * Gets error if category doesn't exist.
+     *
+     * @return void
+     */
+    public function test_get_errors_if_category_not_exist()
+    {
+        $data = [
+            'category_id' => 10,
+            'name' => 'Test_item',
+            'value' => 50,
+            'quality' => -10,
+        ];
+
+        $response = $this->json('POST', '/api/items/', $data);
+
+        $response->assertStatus(404);
+
+        $response->assertSee('errors');
+    }
 }

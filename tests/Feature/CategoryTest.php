@@ -40,4 +40,22 @@ class CategoryTest extends TestCase
 
         $response->assertSee('id');
     }
+
+    /**
+     * Gets error if name too short.
+     *
+     * @return void
+     */
+    public function test_get_errors_if_category_name_too_short()
+    {
+        $data = [
+            'name' => 'Test'
+        ];
+
+        $response = $this->post('/api/categories', $data, ['Accept' => 'application/json']);
+
+        $response->assertStatus(422);
+
+        $response->assertSee('errors');
+    }
 }
