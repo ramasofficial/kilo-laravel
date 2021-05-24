@@ -38,7 +38,7 @@ php artisan test
 ```
 
 # API documentation
-##Categories:
+## Categories:
 
 1. List all categories
 
@@ -59,7 +59,7 @@ Body:
 name : string|min:5|unique:categories
 ```
 
-##Items:
+## Items:
 1. List items by category_id
 
 Endpoint:
